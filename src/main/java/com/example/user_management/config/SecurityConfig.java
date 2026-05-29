@@ -38,10 +38,20 @@ public class SecurityConfig {
             .addFilterBefore(jwtAuthenticationFilter,
         UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers( "/auth/**",
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/v3/api-docs",
+            "/swagger-resources/**",
+            "/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 
-            );
+            )
+            .formLogin(form -> form.disable())
+
+        .httpBasic(httpBasic -> httpBasic.disable());
+            
             
 
         return http.build();

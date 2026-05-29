@@ -122,4 +122,30 @@ cartItemRepository.save(cartItem);
     );
 }
 
+ @Transactional
+public void removeFromCart(Long cartItemId,
+                           Authentication authentication) {
+
+    String email = authentication.getName();
+
+    User user = userRepository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("User not found"));
+
+    Cart cart = cartRepository.findByUser(user)
+            .orElseThrow(() ->
+                    new RuntimeException("Cart not found"));
+
+    CartItem cartItem = cartItemRepository
+            .findByIdAndCart(cartItemId, cart)
+            .orElseThrow(() ->
+                    new RuntimeException("Cart item not found"));
+
+    // remove from cart collection
+    cart.getCartItems().remove(cartItem);
+
+    // optional explicit delete
+    cartItemRepository.delete(cartItem);
+}
+
 }

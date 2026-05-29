@@ -16,6 +16,12 @@ public interface CartItemRepository
         Cart cart,
         Product product
 );
+
+  
+  Optional<CartItem> findByIdAndCart(
+        Long id,
+        Cart cart
+);
 }
 
 

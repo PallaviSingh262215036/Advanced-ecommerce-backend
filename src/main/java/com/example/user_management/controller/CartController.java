@@ -33,4 +33,18 @@ public CartResponseDTO getCart(
 
     return cartService.getCart(authentication);
 }
+
+  @DeleteMapping("/remove/{cartItemId}")
+public String removeFromCart(
+        @PathVariable Long cartItemId,
+        Authentication authentication) {
+
+    cartService.removeFromCart(
+            cartItemId,
+            authentication
+    );
+
+    return "Item removed from cart";
+}
+
 }
