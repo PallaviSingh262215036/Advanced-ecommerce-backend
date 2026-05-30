@@ -1,125 +1,302 @@
-# Advanced E-commerce Backend
+# Advanced E-Commerce Backend
 
-A production-style backend application built using Spring Boot and MySQL.
+A production-style E-Commerce Backend built with Spring Boot, Spring Security, JWT Authentication, MySQL, Docker, and Railway.
 
-This project implements real-world backend engineering concepts including:
+The application supports user authentication, role-based authorization, product management, category management, shopping cart operations, order placement, inventory management, and secure REST APIs.
 
-- JWT Authentication
-- Role-Based Authorization
-- Product & Category Management
-- Cart Management
-- Pagination & Search
-- Transactional Workflows
-- DTO Architecture
-- Entity Relationships
-- Spring Security
-- JPA/Hibernate Optimization
+---
+
+# Live Demo
+
+## Swagger Documentation
+
+https://advanced-ecommerce-backend-production-67e7.up.railway.app/swagger-ui/index.html
+
+## Source Code
+
+https://github.com/PallaviSingh262215036/Advanced-ecommerce-backend
+
+## Backend API
+
+https://advanced-ecommerce-backend-production-67e7.up.railway.app
+
+---
+
+# Features
+
+## Authentication & Authorization
+
+* JWT Authentication
+* Secure Login System
+* Role-Based Access Control (RBAC)
+* ADMIN and USER Roles
+* Protected API Endpoints
+* Spring Security Integration
+
+## User Management
+
+* User Registration
+* User Login
+* Get User Details
+* Update User
+* Delete User
+* Search Users
+* Pagination Support
+* Role Assignment
+
+## Category Management
+
+* Create Categories
+* Category Validation
+* ADMIN-only Category Management
+
+## Product Management
+
+* Create Products
+* View Products
+* Product Pagination
+* Product Categorization
+* Product Stock Management
+
+## Shopping Cart
+
+* Add Products to Cart
+* View Cart
+* Remove Products from Cart
+* Automatic Total Calculation
+* Subtotal Calculation
+
+## Order Management
+
+* Place Orders
+* View User Orders
+* Convert Cart to Order
+* Automatic Cart Cleanup
+
+## Inventory Management
+
+* Stock Tracking
+* Automatic Stock Deduction
+* Insufficient Stock Validation
+* Overselling Prevention
+
+## Additional Features
+
+* Global Exception Handling
+* Soft Delete Users
+* DTO-Based Architecture
+* Bean Validation
+* Admin Analytics
+* Swagger/OpenAPI Documentation
+* Docker Support
+* Railway Deployment
 
 ---
 
 # Tech Stack
 
-- Java
-- Spring Boot
-- Spring Security
-- JWT Authentication
-- Spring Data JPA
-- Hibernate
-- MySQL
-- Maven
+## Backend
 
----
+* Java 21
+* Spring Boot 3
+* Spring Security
+* Spring Data JPA
+* Hibernate
+* Maven
 
-# Features Implemented
+## Database
+
+* MySQL
 
 ## Authentication
-- User Registration
-- Login using JWT
-- Role-based authorization
 
-## Product Module
-- Create Product
-- Category Mapping
-- Pagination
-- Search Products
+* JWT (JSON Web Token)
 
-## Cart Module
-- Add to Cart
-- Quantity Merge Logic
-- Remove from Cart
-- Get Current User Cart
-- Cart Total Calculation
+## Documentation
+
+* Swagger / OpenAPI
+
+## Deployment
+
+* Docker
+* Railway
 
 ---
 
-# Security Features
+# Architecture
 
-- BCrypt Password Encryption
-- JWT Token Authentication
-- Protected APIs using Spring Security
+User / Client
+
+↓
+
+Spring Boot REST APIs
+
+↓
+
+Controller Layer
+
+↓
+
+Service Layer
+
+↓
+
+Repository Layer (JPA)
+
+↓
+
+MySQL Database
 
 ---
 
-# API Examples
+# Security
 
-## Login
+The application uses JWT-based authentication and role-based authorization.
 
-POST /auth/login
+### Roles
 
-```json
-{
-  "email": "rahul@test.com",
-  "password": "1234"
-}
+#### ADMIN
+
+* Manage Categories
+* Manage Products
+* Assign Roles
+* Access Protected Administrative Operations
+
+#### USER
+
+* Browse Products
+* Manage Cart
+* Place Orders
+* View Personal Orders
+
+---
+
+# Business Flow
+
+User Registration
+
+↓
+
+Login (JWT)
+
+↓
+
+Browse Products
+
+↓
+
+Add Product to Cart
+
+↓
+
+View Cart
+
+↓
+
+Place Order
+
+↓
+
+Stock Validation
+
+↓
+
+Stock Deduction
+
+↓
+
+Order Creation
+
+↓
+
+Cart Cleared
+
+---
+
+# Verified Functionality
+
+### Authentication
+
+* User Registration
+* User Login
+* JWT Validation
+* Protected Endpoints
+
+### Authorization
+
+* ADMIN Access Control
+* USER Access Control
+* Role-Based Restrictions
+
+### Product Flow
+
+* Category Creation
+* Product Creation
+* Product Retrieval
+
+### Cart Flow
+
+* Add to Cart
+* View Cart
+* Remove from Cart
+
+### Order Flow
+
+* Place Order
+* View Orders
+* Cart Cleanup After Checkout
+
+### Inventory Flow
+
+* Stock Deduction
+* Insufficient Stock Validation
+
+### Deployment
+
+* Dockerized Application
+* Railway Deployment
+* Environment Variable Configuration
+
+---
+
+# API Documentation
+
+Swagger UI:
+
+https://advanced-ecommerce-backend-production-67e7.up.railway.app/swagger-ui/index.html
+
+---
+
+# Environment Variables
+
+Create the following environment variables:
+
+```env
+DB_URL=
+DB_USERNAME=
+DB_PASSWORD=
+JWT_SECRET=
 ```
-
----
-
-## Add Product
-
-POST /products
-
-```json
-{
-  "name": "iPhone 15",
-  "description": "128GB",
-  "price": 80000,
-  "stock": 5,
-  "categoryId": 1
-}
-```
-
----
-
-# Project Architecture
-
-Controller → Service → Repository → Database
-
-- DTO-based API design
-- EntityGraph optimization for reducing N+1 queries
-- Transactional business workflows
-
----
 
 # Running Locally
 
 ## Clone Repository
 
 ```bash
-git clone <repo-url>
+git clone YOUR_GITHUB_REPO_URL
 ```
 
-## Configure Database
+## Move Into Project
 
-Update:
-
-```text
-src/main/resources/application.properties
+```bash
+cd user_management
 ```
 
-Add your MySQL username/password.
+## Build Project
 
----
+```bash
+mvn clean install
+```
 
 ## Run Application
 
@@ -127,13 +304,64 @@ Add your MySQL username/password.
 mvn spring-boot:run
 ```
 
+Application:
+
+```text
+http://localhost:8080
+```
+
+Swagger:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+# Docker
+
+## Build Docker Image
+
+```bash
+docker build -t ecommerce-backend .
+```
+
+## Run Docker Container
+
+```bash
+docker run -p 8080:8080 ecommerce-backend
+```
+
 ---
 
-# Upcoming Features
+# Future Enhancements
 
-- Order Placement Workflow
-- Inventory Management
-- Redis Caching
-- Docker Support
-- Microservices Architecture
-- Kafka Event Processing
+* React Frontend
+* Refresh Token Support
+* Order Status Workflow
+* Payment Gateway Integration
+* Email Notifications
+* Product Reviews & Ratings
+---
+
+# Project Status
+
+Completed Backend MVP
+
+Implemented:
+
+* Authentication & Authorization
+* Product Catalog
+* Category Management
+* Shopping Cart
+* Order Management
+* Inventory Management
+* Docker Deployment
+* Railway Deployment
+
+Frontend development planned using React.
+
+---
+
+# Author
+
+Built using Spring Boot, Spring Security, JWT, MySQL, Docker, and Railway as a backend-focused E-Commerce application.
+
