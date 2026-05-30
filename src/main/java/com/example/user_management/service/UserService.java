@@ -53,6 +53,10 @@ public class UserService {
 
         String encodedPassword = passwordEncoder.encode(dto.getPassword());
         user.setPassword(encodedPassword);
+        Role userRole = roleRepository.findByRoleName("USER")
+        .orElseThrow(() -> new RuntimeException("USER role not found"));
+
+        user.getRoles().add(userRole);
         User saved = userRepository.save(user); 
         return mapToDto(saved);
       }
