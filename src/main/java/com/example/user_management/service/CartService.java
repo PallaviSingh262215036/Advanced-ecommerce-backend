@@ -103,6 +103,7 @@ cartItemRepository.save(cartItem);
                                 * item.getProduct().getPrice();
 
                         return new CartItemResponseDTO(
+                                item.getId(),
                                 item.getProduct().getName(),
                                 item.getQuantity(),
                                 item.getProduct().getPrice(),

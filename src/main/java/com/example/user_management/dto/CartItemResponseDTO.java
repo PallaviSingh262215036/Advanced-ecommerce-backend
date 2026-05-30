@@ -2,6 +2,7 @@ package com.example.user_management.dto;
 
 public class CartItemResponseDTO {
 
+    private long cartItemId;
     private String productName;
 
     private Integer quantity;
@@ -13,17 +14,22 @@ public class CartItemResponseDTO {
     public CartItemResponseDTO() {
     }
 
-    public CartItemResponseDTO(String productName,
+    public CartItemResponseDTO( long cartItemId,
+                               String productName,
                                Integer quantity,
                                Double price,
                                Double subtotal) {
 
+       this.cartItemId=cartItemId; 
         this.productName = productName;
         this.quantity = quantity;
         this.price = price;
         this.subtotal = subtotal;
     }
 
+    public Long getCartItemId() {
+    return cartItemId;
+}
     public String getProductName() {
         return productName;
     }
