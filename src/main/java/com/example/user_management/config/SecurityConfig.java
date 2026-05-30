@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -45,6 +46,7 @@ public class SecurityConfig {
             "/v3/api-docs",
             "/swagger-resources/**",
             "/webjars/**").permitAll()
+             .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
                 .anyRequest().authenticated()
                 
             )
